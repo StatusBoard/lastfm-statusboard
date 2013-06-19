@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Last.fm + Status Board</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="style/generate.css" />
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        function generateURL() {
+            var form = document.forms['generate'];
+            var url = 'http://sb.sayo.me/lastfm/panel/';
+            
+            var params = []
+            
+            var username = form['username'].value;
+            if (username) {
+                params.push('username=' + username);
+            }
+            
+            var limit = form['limit'].value;
+            if (limit && parseInt(limit)) {
+                params.push('limit=' + limit);
+            }
+            
+            var fade = form['fade'].checked;
+            if (fade) {
+                params.push('fade=true');
+            }
+            
+            for (var i=0; i<params.length; i++) {
+                if (i == 0) {
+                    url = url.concat('?');
+                }
+                else {
+                    url = url.concat('&');
+                }
+                url = url.concat(params[i]);
+            }
+            
+            return url;
+        }
+        
+        function generatePanicboardURL(url) {
+            return 'panicboard://?url=' + encodeURIComponent(url) + '&panel=diy&sourceDisplayName=' + encodeURIComponent('sayo.me');
+        }
+        
+        function generatePanel() {
+            var form = document.forms['generate'];
+            var url = generateURL();
+            var panicboardURL = generatePanicboardURL(url);
+            
+            document.getElementById('preview').src = url;
+            form['result'].value = url;
+        }
+        
+        function openInStatusBoard() {
+            var url = generateURL();
+            var panicboardURL = generatePanicboardURL(url);
+            window.open(panicboardURL, "_self");
+        }
+        
+        $(function() {
+            document.getElementById('preview').src = "http://sb.sayo.me/lastfm/panel/";
+        });
+    </script>
+</head>
+<body>
+    <div class="content">
+        <h1>Last.fm + Status Board</h1>
+        <form name="generate" action="." onsubmit="return false;">
+            <header>
+                Generate Last.fm Panel
+            </header>
+            
+            <div class="field-group">
+                <div class="field">
+                    <label for="username">Last.fm Username</label><input type="text" placeholder="some.body" name="username" autocapitalize="off" autocomplete="off" autocorrect="off" />
+                </div>
+                <div class="field">
+                    <label for="username">Number of Recent Plays</label><input type="text" name="limit" size="3" placeholder="20" />
+                </div>
+                <div class="field">
+                    <label>Options</label><input type="checkbox" name="fade" /> <label for="fade">Fade out older plays</label>
+                </div>
+            </div>
+            
+            <footer>
+                <input type="submit" value="Generate" onclick="generatePanel(); return false;" />
+                <input type="button" value="Open in Status Board" onclick="openInStatusBoard(); return false;" />
+            </footer>
+            
+            <div class="field-group">
+                <div class="field">
+                    <label for="result">URL</label><textarea style="width: 510px;" rows="2" name="result"></textarea>
+                </div>
+                <div class="field">
+                    <label>Preview</label>
+                    <iframe id="preview">
+                    </iframe>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>An experiment by <a href="http://last.fm/user/thlister">thlister</a> and <a href="http://last.fm/user/loganscollins">loganscollins</a>. Last.fm is a trademark of Last.fm Ltd. Status Board is a service mark of Panic Inc.</p>
+    </footer>
+    
+    <!-- GoSquared -->
+    
+    <script type="text/javascript">
+	  var GoSquared = {};
+	  GoSquared.acct = "GSN-526431-G";
+	  (function(w){
+	    function gs(){
+	      w._gstc_lt = +new Date;
+	      var d = document, g = d.createElement("script");
+	      g.type = "text/javascript";
+	      g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+	      var s = d.getElementsByTagName("script")[0];
+	      s.parentNode.insertBefore(g, s);
+	    }
+	    w.addEventListener ?
+	      w.addEventListener("load", gs, false) :
+	      w.attachEvent("onload", gs);
+	  })(window);
+	</script>
+	
+</body>
+</html>

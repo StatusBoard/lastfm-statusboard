@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Last.fm</title>
+    
+    <link rel="stylesheet" href="../style/lastfm.css" media="screen">
+    
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.timeago.js"></script>
+    <script type="text/javascript" src="../js/lastfm.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var API_KEY = 'd43717f4f52ef72b89ef36b865402fd4';
+        
+        function startUpdateTimer() {
+            $('div#lastfm').lastFM({
+                username: username,
+                apikey: API_KEY,
+                number: limit,
+                artSize: 'large',
+                noart: '../images/noartwork.png'
+            });
+            setTimeout(startUpdateTimer, 60000);
+        }
+        
+        try {
+            var params = {};
+            var query = document.location.search.replace("?", "").replace("/", "");
+            var vars = query.split('&');
+            for (var i=0; i<vars.length; i++) {
+                var pair = vars[i].split('=');
+                if (pair.length == 2) {
+                    var key = decodeURIComponent(pair[0]);
+                    var value = decodeURIComponent(pair[1]);
+                    if (key && value) {
+                        params[key] = value;
+                    }
+                }
+            }
+            
+            var username = 'thlister';
+            if (params['username']) {
+                username = params['username'];
+            }
+            
+            var limit = 20;
+            if (params['limit']) {
+                limit = parseInt(params['limit']);
+            }
+            
+            startUpdateTimer();
+            
+            if (params['fade'] == 'true') {
+                $(document.body).append('<div id="fade" />');
+            }
+            
+            $("*").click(function(){
+                return false;
+            });
+        }
+        catch (err) {
+            $(document.body).html('Error: ' + err);
+        }
+    });
+    </script>
+</head>
+<body>
+    <div id="lastfm"></div>
+    
+    <!-- GoSquared -->
+    <script type="text/javascript">
+	  var GoSquared = {};
+	  GoSquared.acct = "GSN-526431-G";
+	  (function(w){
+	    function gs(){
+	      w._gstc_lt = +new Date;
+	      var d = document, g = d.createElement("script");
+	      g.type = "text/javascript";
+	      g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+	      var s = d.getElementsByTagName("script")[0];
+	      s.parentNode.insertBefore(g, s);
+	    }
+	    w.addEventListener ?
+	      w.addEventListener("load", gs, false) :
+	      w.attachEvent("onload", gs);
+	  })(window);
+	</script>
+</body>
+</html>

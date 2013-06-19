@@ -1,0 +1,131 @@
+@font-face {
+    font-family: "Roadgeek 2005 Series C";
+    src: url("../fonts/roadgeek-2005-series-c.otf");
+}
+@font-face {
+    font-family: "Roadgeek 2005 Series D";
+    src: url("../fonts/roadgeek-2005-series-d.otf");
+}
+@font-face {
+    font-family: "Roadgeek 2005 Series EM";
+    src: url("../fonts/roadgeek-2005-series-em.otf");
+}
+
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Roadgeek 2005 Series C";
+    color: white;
+    overflow: hidden;
+    }
+
+#fade {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: -webkit-linear-gradient(top, transparent 128px, rgb(0, 0, 0) 100%);
+    }
+
+
+#lastfm {
+    }
+    #lastfm:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+#lastfm .track {
+    position: relative;
+    float: left;
+    width: 130px;
+    height: 72px;
+    padding: 14px 10px 14px 90px;
+    margin: 10px 10px 10px 10px;
+    border: 1px solid hsl(0, 0%, 5%);
+    background: hsl(0, 0%, 10%);
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 15px rgba(0, 0, 0, 1.0), inset 0 0 2px rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    }
+    #lastfm .track.nowplaying {
+        }
+        #lastfm .track.nowplaying .nowplaying-banner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            padding: 2px 6px 0 6px;
+            font-size: 12px;
+            border: 1px solid hsl(0, 100%, 30%);
+            border-bottom-right-radius: 3px;
+            background-image: -webkit-linear-gradient(top, hsl(0, 80%, 50%), hsl(0, 100%, 30%));
+            -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+#lastfm .track .art {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    width: 72px;
+    height: 72px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+#lastfm .track .art img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:72px;
+    height:72px;
+    border-radius: 2px;
+    }
+#lastfm .track .art .gloss {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:72px;
+    height:72px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.4);
+    background-image: -webkit-linear-gradient(-60deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.0) 50%, rgba(255, 255, 255, 0.05) 100%);
+    }
+
+#lastfm .track .song {
+    padding-top: 2px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+#lastfm .track .artist {
+    padding-bottom: 3px;
+    font-size: 15px;
+    color: hsl(0, 0%, 60%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#lastfm .track .album {
+    padding-bottom: 3px;
+    font-size: 15px;
+    color: hsl(0, 0%, 40%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+#lastfm .track .time {
+    padding-bottom: 3px;
+    font-size: 15px;
+    color: hsl(0, 0%, 30%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
